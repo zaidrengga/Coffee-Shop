@@ -14,7 +14,7 @@ interface ProductFilters {
 }
 
 export async function getProducts(filters: ProductFilters = {}): Promise<Product[]> {
-  const supabase = createClient()
+  const supabase = await createClient()
 
   let query = supabase
     .from("products")
@@ -102,7 +102,7 @@ export async function getProducts(filters: ProductFilters = {}): Promise<Product
 }
 
 export async function getProduct(id: string): Promise<Product | null> {
-  const supabase = createClient()
+  const supabase = await createClient()
 
   const { data, error } = await supabase
     .from("products")
@@ -123,7 +123,7 @@ export async function getProduct(id: string): Promise<Product | null> {
 }
 
 export async function getCategories(): Promise<Category[]> {
-  const supabase = createClient()
+  const supabase = await createClient()
 
   const { data, error } = await supabase.from("categories").select("*").order("name")
 
@@ -136,7 +136,7 @@ export async function getCategories(): Promise<Category[]> {
 }
 
 export async function getFeaturedProducts(): Promise<Product[]> {
-  const supabase = createClient()
+  const supabase = await createClient()
 
   const { data, error } = await supabase
     .from("products")
@@ -159,7 +159,7 @@ export async function getFeaturedProducts(): Promise<Product[]> {
 }
 
 export async function searchProducts(searchTerm: string): Promise<Product[]> {
-  const supabase = createClient()
+  const supabase = await createClient()
 
   const { data, error } = await supabase
     .from("products")
@@ -183,7 +183,7 @@ export async function searchProducts(searchTerm: string): Promise<Product[]> {
 }
 
 export async function getProductPriceRange(): Promise<{ min: number; max: number }> {
-  const supabase = createClient()
+  const supabase =  await createClient()
 
   const { data, error } = await supabase
     .from("products")

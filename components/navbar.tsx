@@ -1,13 +1,11 @@
 import Link from "next/link"
 import { createClient } from "@/lib/supabase/server"
 import { Button } from "@/components/ui/button"
-import { UserNav } from "@/components/user-nav"
-import { CartButton } from "@/components/cart-button"
 import { SearchBar } from "@/components/search-bar"
 import { Coffee } from "lucide-react"
 
 export async function Navbar() {
-  const supabase = createClient()
+  const supabase = await createClient()
   const {
     data: { user },
   } = await supabase.auth.getUser()
@@ -42,12 +40,6 @@ export async function Navbar() {
               <Link href="/contact">Contact</Link>
             </Button>
           </nav>
-
-          {/* User Actions */}
-          <div className="flex items-center gap-4">
-            <CartButton />
-            <UserNav user={user} />
-          </div>
         </div>
 
         {/* Mobile Search Bar */}
