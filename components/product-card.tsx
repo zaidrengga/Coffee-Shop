@@ -33,6 +33,8 @@ export function ProductCard({ product }: ProductCardProps) {
           <div className="space-y-2">
             <h3 className="font-semibold text-lg line-clamp-1">{product.name}</h3>
             <p className="text-muted-foreground text-sm line-clamp-2">{product.description}</p>
+            {/* Promotional notice: site is informational only */}
+            <p className="text-xs text-muted-foreground mt-2 italic">This site is for promotion only — purchases are not handled here.</p>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-1">
                 <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />

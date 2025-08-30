@@ -1,8 +1,9 @@
 import Link from "next/link"
 import { createClient } from "@/lib/supabase/server"
 import { Button } from "@/components/ui/button"
-import { SearchBar } from "@/components/search-bar"
+import SearchBarClient from "@/components/search-bar-client"
 import { Coffee } from "lucide-react"
+import NavLinks from "@/components/nav-links"
 
 export async function Navbar() {
   const supabase = await createClient()
@@ -22,29 +23,16 @@ export async function Navbar() {
 
           {/* Search Bar - Hidden on mobile */}
           <div className="hidden md:flex flex-1 max-w-md mx-8">
-            <SearchBar />
+            <SearchBarClient className="w-full" />
           </div>
 
           {/* Navigation */}
-          <nav className="hidden lg:flex items-center gap-6">
-            <Button variant="ghost" asChild>
-              <Link href="/">Home</Link>
-            </Button>
-            <Button variant="ghost" asChild>
-              <Link href="/products">Products</Link>
-            </Button>
-            <Button variant="ghost" asChild>
-              <Link href="/about">About</Link>
-            </Button>
-            <Button variant="ghost" asChild>
-              <Link href="/contact">Contact</Link>
-            </Button>
-          </nav>
+          <NavLinks />
         </div>
 
         {/* Mobile Search Bar */}
         <div className="md:hidden pb-4">
-          <SearchBar />
+          <SearchBarClient className="w-full" />
         </div>
       </div>
     </header>

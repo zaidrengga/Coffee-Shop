@@ -6,14 +6,15 @@ import { Badge } from "@/components/ui/badge"
 import { ArrowRight, Coffee, Leaf, Award, Clock } from "lucide-react"
 import { getFeaturedProducts } from "@/lib/actions"
 import { ProductGrid } from "@/components/product-grid"
+import TransitionLink from "@/components/transition-link"
 
 export default async function HomePage() {
-  const featuredProducts = await getFeaturedProducts()
+  const featuredProducts = await (await getFeaturedProducts()).slice(0, 4)
 
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-dvh bg-gradient-to-br from-primary/5 to-secondary/5 flex items-center justify-center">
+      <section data-scroll className="relative min-h-dvh bg-gradient-to-br from-primary/5 to-secondary/5 flex items-center justify-center">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
@@ -33,7 +34,7 @@ export default async function HomePage() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button asChild size="lg" className="text-lg px-8">
                   <Link href="/products">
-                    Shop Now
+                    Our Products
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
@@ -60,7 +61,7 @@ export default async function HomePage() {
       {/* Features Section */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
-          <div className="text-center space-y-4 mb-16">
+          <div data-scroll className="text-center space-y-4 mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold">Why Choose BrewCraft?</h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
               We're committed to delivering exceptional coffee experiences through quality, sustainability, and
@@ -68,7 +69,7 @@ export default async function HomePage() {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <Card className="text-center p-6 bg-background/50 backdrop-blur">
+            <Card data-scroll className="text-center p-6 bg-background/50 backdrop-blur">
               <CardContent className="space-y-4">
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
                   <Coffee className="h-8 w-8 text-primary" />
@@ -79,7 +80,7 @@ export default async function HomePage() {
                 </p>
               </CardContent>
             </Card>
-            <Card className="text-center p-6 bg-background/50 backdrop-blur">
+            <Card data-scroll className="text-center p-6 bg-background/50 backdrop-blur">
               <CardContent className="space-y-4">
                 <div className="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto">
                   <Leaf className="h-8 w-8 text-secondary" />
@@ -90,7 +91,7 @@ export default async function HomePage() {
                 </p>
               </CardContent>
             </Card>
-            <Card className="text-center p-6 bg-background/50 backdrop-blur">
+            <Card data-scroll className="text-center p-6 bg-background/50 backdrop-blur">
               <CardContent className="space-y-4">
                 <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto">
                   <Award className="h-8 w-8 text-accent" />
@@ -101,7 +102,7 @@ export default async function HomePage() {
                 </p>
               </CardContent>
             </Card>
-            <Card className="text-center p-6 bg-background/50 backdrop-blur">
+            <Card data-scroll className="text-center p-6 bg-background/50 backdrop-blur">
               <CardContent className="space-y-4">
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
                   <Clock className="h-8 w-8 text-primary" />
@@ -117,19 +118,21 @@ export default async function HomePage() {
       </section>
 
       {/* Featured Products */}
-      <section className="py-20">
+      <section data-scroll className="py-20">
         <div className="container mx-auto px-4">
-          <div className="text-center space-y-4 mb-16">
+          <div data-scroll className="text-center space-y-4 mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold">Featured Products</h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
               Discover our most popular coffee selections, carefully chosen for their exceptional quality and taste.
             </p>
           </div>
-          <ProductGrid products={featuredProducts} />
-          <div className="text-center mt-12">
+          <div data-scroll>
+            <ProductGrid products={featuredProducts} />
+          </div>
+          <div data-scroll className="text-center mt-12">
             <Button asChild size="lg" variant="outline">
               <Link href="/products">
-                View All Products
+                Explore All Products
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
@@ -138,7 +141,7 @@ export default async function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-primary text-primary-foreground">
+      <section data-scroll className="py-20 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-3xl mx-auto space-y-8">
             <h2 className="text-3xl lg:text-4xl font-bold">Ready to Experience BrewCraft?</h2>
@@ -148,7 +151,7 @@ export default async function HomePage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" variant="secondary" className="text-lg px-8" asChild>
-                <Link href="/products">Shop Coffee</Link>
+                <Link href="/products">Explore Products</Link>
               </Button>
               <Button
                 size="lg"
@@ -164,7 +167,7 @@ export default async function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-muted py-16">
+      <footer data-scroll className="bg-muted py-16">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="space-y-4">
@@ -179,52 +182,52 @@ export default async function HomePage() {
             <div className="space-y-4">
               <h3 className="font-semibold">Shop</h3>
               <div className="space-y-2 text-muted-foreground">
-                <Link href="/products" className="block hover:text-foreground transition-colors">
+                <TransitionLink href="/products" className="block hover:text-foreground transition-colors">
                   All Products
-                </Link>
-                <Link href="/products?category=coffee-beans" className="block hover:text-foreground transition-colors">
+                </TransitionLink>
+                <TransitionLink href="/products?category=coffee-beans" className="block hover:text-foreground transition-colors">
                   Coffee Beans
-                </Link>
-                <Link href="/products?category=hot-drinks" className="block hover:text-foreground transition-colors">
+                </TransitionLink>
+                <TransitionLink href="/products?category=hot-drinks" className="block hover:text-foreground transition-colors">
                   Hot Drinks
-                </Link>
-                <Link href="/products?category=pastries" className="block hover:text-foreground transition-colors">
+                </TransitionLink>
+                <TransitionLink href="/products?category=pastries" className="block hover:text-foreground transition-colors">
                   Pastries
-                </Link>
+                </TransitionLink>
               </div>
             </div>
             <div className="space-y-4">
               <h3 className="font-semibold">Company</h3>
               <div className="space-y-2 text-muted-foreground">
-                <Link href="/about" className="block hover:text-foreground transition-colors">
+                <TransitionLink href="/about" className="block hover:text-foreground transition-colors">
                   About Us
-                </Link>
-                <Link href="/contact" className="block hover:text-foreground transition-colors">
-                  Contact
-                </Link>
-                <Link href="/careers" className="block hover:text-foreground transition-colors">
+                </TransitionLink>
+                <TransitionLink href="/contact" className="block hover:text-foreground transition-colors">
+                  Contact Us
+                </TransitionLink>
+                <TransitionLink href="/careers" className="block hover:text-foreground transition-colors">
                   Careers
-                </Link>
-                <Link href="/sustainability" className="block hover:text-foreground transition-colors">
+                </TransitionLink>
+                <TransitionLink href="/sustainability" className="block hover:text-foreground transition-colors">
                   Sustainability
-                </Link>
+                </TransitionLink>
               </div>
             </div>
             <div className="space-y-4">
               <h3 className="font-semibold">Support</h3>
               <div className="space-y-2 text-muted-foreground">
-                <Link href="/help" className="block hover:text-foreground transition-colors">
+                <TransitionLink href="/help" className="block hover:text-foreground transition-colors">
                   Help Center
-                </Link>
-                <Link href="/shipping" className="block hover:text-foreground transition-colors">
-                  Shipping Info
-                </Link>
-                <Link href="/returns" className="block hover:text-foreground transition-colors">
-                  Returns
-                </Link>
-                <Link href="/privacy" className="block hover:text-foreground transition-colors">
+                </TransitionLink>
+                <TransitionLink href="/contact" className="block hover:text-foreground transition-colors">
+                  Visit Us
+                </TransitionLink>
+                <TransitionLink href="/help" className="block hover:text-foreground transition-colors">
+                  FAQ
+                </TransitionLink>
+                <TransitionLink href="/privacy" className="block hover:text-foreground transition-colors">
                   Privacy Policy
-                </Link>
+                </TransitionLink>
               </div>
             </div>
           </div>

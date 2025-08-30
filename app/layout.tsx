@@ -4,6 +4,9 @@ import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
 import { Toaster } from "sonner"
 import { Navbar } from "@/components/navbar"
+import { PromoBanner } from "@/components/promo-banner"
+import ScrollAnimator from "@/components/scroll-animator"
+import PageTransitions from "@/components/page-transitions"
 import "./globals.css"
 
 export const metadata: Metadata = {
@@ -22,16 +25,20 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <style>{`
-html {
-  font-family: ${GeistSans.style.fontFamily};
-  --font-sans: ${GeistSans.variable};
-  --font-mono: ${GeistMono.variable};
-}
+              html {
+                font-family: ${GeistSans.style.fontFamily};
+                --font-sans: ${GeistSans.variable};
+                --font-mono: ${GeistMono.variable};
+              }
         `}</style>
       </head>
       <body>
         <Navbar />
-        <main>{children}</main>
+        <PromoBanner />
+        <ScrollAnimator />
+        <main>
+          <PageTransitions>{children}</PageTransitions>
+        </main>
         <Toaster />
       </body>
     </html>

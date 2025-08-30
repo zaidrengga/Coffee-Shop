@@ -24,6 +24,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         <div className="space-y-4">
           <h1 className="text-4xl font-bold">{product.name}</h1>
           <p className="text-muted-foreground">{product.description}</p>
+          <p className="text-sm text-muted-foreground italic">This site is for product promotion only — purchases are not handled here. For purchasing information, please visit our cafe or authorized retailers.</p>
           <p>{product.category?.description}</p>
           <div className="flex items-center gap-2">
             <Badge>
